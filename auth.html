@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helplytics AI - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Helplytics AI</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="auth.html" class="btn-nav">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- AUTH SECTION -->
+  <section class="auth-section">
+    <div class="auth-card">
+
+      <!-- TABS -->
+      <div class="auth-tabs">
+        <button class="tab-btn active" onclick="showTab('login')">Login</button>
+        <button class="tab-btn" onclick="showTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="login" class="tab-content">
+        <h2>Welcome back</h2>
+        <p class="auth-sub">Login to your Helplytics account</p>
+        <input type="email" placeholder="Email address" class="input-field">
+        <input type="password" placeholder="Password" class="input-field">
+        <button class="btn-primary full-width" onclick="window.location.href='dashboard.html'">Login</button>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <div id="signup" class="tab-content hidden">
+        <h2>Create account</h2>
+        <p class="auth-sub">Join the Helplytics community</p>
+        <input type="text" placeholder="Full name" class="input-field">
+        <input type="email" placeholder="Email address" class="input-field">
+        <input type="password" placeholder="Password" class="input-field">
+
+        <!-- ROLE SELECTION -->
+        <p class="role-label">I want to:</p>
+        <div class="role-options">
+          <div class="role-card" onclick="selectRole(this)">
+            <div class="role-icon">🙋</div>
+            <p>Need Help</p>
+          </div>
+          <div class="role-card" onclick="selectRole(this)">
+            <div class="role-icon">🤝</div>
+            <p>Can Help</p>
+          </div>
+          <div class="role-card" onclick="selectRole(this)">
+            <div class="role-icon">⭐</div>
+            <p>Both</p>
+          </div>
+        </div>
+
+        <button class="btn-primary full-width" onclick="window.location.href='onboarding.html'">Create Account</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Helplytics AI — Built for SMIT Grand Coding Night</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tab).classList.remove('hidden');
+      event.target.classList.add('active');
+    }
+    function selectRole(el) {
+      document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+  </script>
+
+</body>
+</html>

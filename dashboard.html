@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helplytics AI - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Helplytics AI</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="auth.html" class="btn-nav">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- DASHBOARD WRAPPER -->
+  <div class="dashboard-wrapper">
+
+    <!-- WELCOME BANNER -->
+    <div class="welcome-banner">
+      <div>
+        <h1>Welcome back, TAHA ASIF  👋</h1>
+        <p>Here's what's happening in your community today.</p>
+      </div>
+      <a href="explore.html" class="btn-primary">+ New Request</a>
+    </div>
+
+    <!-- STATS CARDS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <p class="stat-label">Requests Posted</p>
+        <h2 class="stat-num">12</h2>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Requests Solved</p>
+        <h2 class="stat-num">8</h2>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">People Helped</p>
+        <h2 class="stat-num">24</h2>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Trust Score</p>
+        <h2 class="stat-num">87%</h2>
+      </div>
+    </div>
+
+    <!-- TWO COLUMN LAYOUT -->
+    <div class="dash-columns">
+
+      <!-- RECENT REQUESTS -->
+      <div class="dash-card">
+        <h3>Recent Requests</h3>
+        <div class="request-item">
+          <div class="request-info">
+            <p class="request-title">Need help with Python loops</p>
+            <span class="badge urgent">Urgent</span>
+          </div>
+          <span class="status open">Open</span>
+        </div>
+        <div class="request-item">
+          <div class="request-info">
+            <p class="request-title">CSS Flexbox alignment issue</p>
+            <span class="badge medium">Medium</span>
+          </div>
+          <span class="status solved">Solved</span>
+        </div>
+        <div class="request-item">
+          <div class="request-info">
+            <p class="request-title">Explain React useState hook</p>
+            <span class="badge low">Low</span>
+          </div>
+          <span class="status open">Open</span>
+        </div>
+        <div class="request-item">
+          <div class="request-info">
+            <p class="request-title">Firebase authentication setup</p>
+            <span class="badge urgent">Urgent</span>
+          </div>
+          <span class="status solved">Solved</span>
+        </div>
+        <a href="explore.html" class="view-all">View all requests →</a>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="dash-right">
+
+        <!-- AI INSIGHTS -->
+        <div class="dash-card ai-card">
+          <h3>🤖 AI Insights</h3>
+          <p>Based on your profile, you can help with <strong>JavaScript</strong> and <strong>CSS</strong> requests.</p>
+          <p>3 new requests match your skills today!</p>
+          <a href="explore.html" class="btn-secondary">View Matches</a>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="dash-card">
+          <h3>Quick Actions</h3>
+          <div class="quick-actions">
+            <a href="explore.html" class="action-btn">📋 Browse Requests</a>
+            <a href="explore.html" class="action-btn">➕ Post a Request</a>
+            <a href="leaderboard.html" class="action-btn">🏆 Leaderboard</a>
+            <a href="auth.html" class="action-btn">👤 My Profile</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Helplytics AI — Built for SMIT Grand Coding Night</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

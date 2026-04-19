@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helplytics AI - Explore</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Helplytics AI</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="auth.html" class="btn-nav">Get Started</a>
+    </div>
+  </nav>
+
+  <div class="explore-wrapper">
+
+    <!-- PAGE HEADER -->
+    <div class="explore-header">
+      <div>
+        <h1>Explore Requests</h1>
+        <p>Browse help requests from your community</p>
+      </div>
+      <button class="btn-primary" onclick="toggleForm()">+ Post a Request</button>
+    </div>
+
+    <!-- CREATE REQUEST FORM -->
+    <div id="create-form" class="dash-card hidden">
+      <h3>Create a Help Request</h3>
+      <input type="text" id="req-title" placeholder="Title — what do you need help with?" class="input-field" oninput="aiSuggest()">
+      <textarea id="req-desc" placeholder="Describe your problem in detail..." class="input-field textarea-field" oninput="aiSuggest()"></textarea>
+      <div id="ai-suggestion" class="ai-suggestion hidden">
+        <p>🤖 <strong>AI Suggestion:</strong> Category: <span id="ai-category"></span> | Urgency: <span id="ai-urgency"></span></p>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:12px;">
+        <button class="btn-primary" onclick="submitRequest()">Submit Request</button>
+        <button class="btn-secondary" onclick="toggleForm()">Cancel</button>
+      </div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterRequests('all', this)">All</button>
+      <button class="filter-btn" onclick="filterRequests('urgent', this)">Urgent</button>
+      <button class="filter-btn" onclick="filterRequests('programming', this)">Programming</button>
+      <button class="filter-btn" onclick="filterRequests('design', this)">Design</button>
+      <button class="filter-btn" onclick="filterRequests('math', this)">Math</button>
+      <button class="filter-btn" onclick="filterRequests('other', this)">Other</button>
+    </div>
+
+    <!-- REQUESTS GRID -->
+    <div class="requests-grid" id="requests-grid">
+
+      <div class="request-card" data-category="programming" data-urgency="urgent">
+        <div class="card-top">
+          <span class="badge urgent">Urgent</span>
+          <span class="category-tag">Programming</span>
+        </div>
+        <h3>Need help with Python loops</h3>
+        <p>I'm stuck on nested for loops in Python. Can someone explain with examples?</p>
+        <div class="card-footer">
+          <span>👤 Ali Hassan</span>
+          <button class="btn-secondary small" onclick="markHelp(this)">I Can Help</button>
+        </div>
+      </div>
+
+      <div class="request-card" data-category="design" data-urgency="medium">
+        <div class="card-top">
+          <span class="badge medium">Medium</span>
+          <span class="category-tag">Design</span>
+        </div>
+        <h3>CSS Flexbox alignment issue</h3>
+        <p>My navbar items won't center properly using flexbox. Please help!</p>
+        <div class="card-footer">
+          <span>👤 Sara Khan</span>
+          <button class="btn-secondary small" onclick="markHelp(this)">I Can Help</button>
+        </div>
+      </div>
+
+      <div class="request-card" data-category="programming" data-urgency="low">
+        <div class="card-top">
+          <span class="badge low">Low</span>
+          <span class="category-tag">Programming</span>
+        </div>
+        <h3>Explain React useState hook</h3>
+        <p>I don't understand how useState works in React functional components.</p>
+        <div class="card-footer">
+          <span>👤 Usman Raza</span>
+          <button class="btn-secondary small" onclick="markHelp(this)">I Can Help</button>
+        </div>
+      </div>
+
+      <div class="request-card" data-category="math" data-urgency="urgent">
+        <div class="card-top">
+          <span class="badge urgent">Urgent</span>
+          <span class="category-tag">Math</span>
+        </div>
+        <h3>Linear algebra exam tomorrow</h3>
+        <p>Need someone to explain matrix multiplication before my exam tomorrow morning.</p>
+        <div class="card-footer">
+          <span>👤 Fatima Malik</span>
+          <button class="btn-secondary small" onclick="markHelp(this)">I Can Help</button>
+        </div>
+      </div>
+
+      <div class="request-card" data-category="other" data-urgency="low">
+        <div class="card-top">
+          <span class="badge low">Low</span>
+          <span class="category-tag">Other</span>
+        </div>
+        <h3>Career advice for fresh grads</h3>
+        <p>Looking for guidance on how to start a career in software development.</p>
+        <div class="card-footer">
+          <span>👤 Hamza Tariq</span>
+          <button class="btn-secondary small" onclick="markHelp(this)">I Can Help</button>
+        </div>
+      </div>
+
+      <div class="request-card" data-category="design" data-urgency="medium">
+        <div class="card-top">
+          <span class="badge medium">Medium</span>
+          <span class="category-tag">Design</span>
+        </div>
+        <h3>Figma prototype review needed</h3>
+        <p>I built a mobile app prototype in Figma and need feedback on the UX flow.</p>
+        <div class="card-footer">
+          <span>👤 Zainab Ahmed</span>
+          <button class="btn-secondary small" onclick="markHelp(this)">I Can Help</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Helplytics AI — Built for SMIT Grand Coding Night</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    function toggleForm() {
+      const form = document.getElementById('create-form');
+      form.classList.toggle('hidden');
+    }
+
+    function filterRequests(type, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.request-card').forEach(card => {
+        if (type === 'all') {
+          card.style.display = 'block';
+        } else if (type === 'urgent') {
+          card.style.display = card.dataset.urgency === 'urgent' ? 'block' : 'none';
+        } else {
+          card.style.display = card.dataset.category === type ? 'block' : 'none';
+        }
+      });
+    }
+
+    function markHelp(btn) {
+      btn.textContent = '✓ Helping!';
+      btn.style.background = '#3B6D11';
+      btn.style.color = '#EAF3DE';
+      btn.disabled = true;
+    }
+
+    function aiSuggest() {
+      const title = document.getElementById('req-title').value.toLowerCase();
+      const desc = document.getElementById('req-desc').value.toLowerCase();
+      const text = title + ' ' + desc;
+      if (text.trim().length < 5) return;
+
+      let category = 'General';
+      let urgency = 'Low';
+
+      if (text.includes('python') || text.includes('javascript') || text.includes('code') || text.includes('bug') || text.includes('react') || text.includes('html') || text.includes('css')) category = 'Programming';
+      else if (text.includes('design') || text.includes('figma') || text.includes('ui') || text.includes('ux')) category = 'Design';
+      else if (text.includes('math') || text.includes('algebra') || text.includes('calculus')) category = 'Math';
+
+      if (text.includes('urgent') || text.includes('asap') || text.includes('exam') || text.includes('tomorrow') || text.includes('deadline')) urgency = 'Urgent';
+      else if (text.includes('soon') || text.includes('today') || text.includes('help')) urgency = 'Medium';
+
+      document.getElementById('ai-category').textContent = category;
+      document.getElementById('ai-urgency').textContent = urgency;
+      document.getElementById('ai-suggestion').classList.remove('hidden');
+    }
+
+    function submitRequest() {
+      const title = document.getElementById('req-title').value;
+      if (!title) { alert('Please enter a title!'); return; }
+      alert('Request submitted successfully!');
+      document.getElementById('req-title').value = '';
+      document.getElementById('req-desc').value = '';
+      document.getElementById('ai-suggestion').classList.add('hidden');
+      toggleForm();
+    }
+  </script>
+
+</body>
+</html>
